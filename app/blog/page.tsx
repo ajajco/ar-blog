@@ -1,12 +1,13 @@
-"use client";
-
-import { useState } from "react";
-import type { Metadata } from "next";
 import PostCard from "@/components/PostCard";
 import { posts, categories } from "@/data/posts";
+import Link from "next/link";
 
-export default function BlogPage() {
-  const [activeCategory, setActiveCategory] = useState("الكل");
+export default function BlogPage({
+  searchParams,
+}: {
+  searchParams: { category?: string };
+}) {
+  const activeCategory = searchParams.category || "الكل";
 
   const filteredPosts =
     activeCategory === "الكل"
@@ -18,26 +19,20 @@ export default function BlogPage() {
       {/* Header */}
       <section className="bg-gradient-to-br from-[#0d3b25] to-[#1a5c3a] text-white py-14 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="flex items-center gap-2 text-emerald-300 text-sm mb-3">
-            <span>📖</span>
-            <span>جميع المقالات</span>
-          </div>
-
           <h1 className="text-3xl md:text-4xl font-black mb-3">
             مكتبة المحتوى العربي
           </h1>
-
           <p className="text-emerald-200 text-base">
-            مقالات شاملة ومعمّقة في الأعمال والتقنية والتسويق.
+            تصفّح المقالات حسب التصنيف — تجربة احترافية وسريعة
           </p>
         </div>
       </section>
 
       {/* Categories */}
       <section className="max-w-6xl mx-auto px-4 py-8">
-        <div className="flex items-center gap-2 mb-8 flex-wrap">
+        <div className="flex flex-wrap gap-2 mb-8 items-center">
           <span className="text-gray-500 text-sm ml-2">
-            تصفية حسب التصنيف
+            تصفية حسب التصنيف:
           </span>
 
           {categories.map((cat) => {
@@ -47,9 +42,9 @@ export default function BlogPage() {
                 : posts.filter((p) => p.category === cat).length;
 
             return (
-              <button
+              <Link
                 key={cat}
-                onClick={() => setActiveCategory(cat)}
+                href={`/blog?category=${encodeURIComponent(cat)}`}
                 className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
                   activeCategory === cat
                     ? "bg-[#0d3b25] text-white"
@@ -57,7 +52,7 @@ export default function BlogPage() {
                 }`}
               >
                 {cat} ({count})
-              </button>
+              </Link>
             );
           })}
         </div>
