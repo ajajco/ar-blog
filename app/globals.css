@@ -2,27 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+/* الخط العربي */
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700;800;900&display=swap");
 
+/* Reset بسيط */
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 
-html,
-body {
-  font-family: "Noto Sans Arabic", Arial, sans-serif;
+/* خلي Tailwind يتحكم بالألوان */
+html {
   direction: rtl;
-  background-color: #f8fafc;
-  color: #1e293b;
 }
 
+body {
+  font-family: 'Noto Sans Arabic', sans-serif;
+}
+
+/* الروابط */
 a {
   color: inherit;
   text-decoration: none;
 }
 
+/* تحسين النصوص داخل المقال */
 .prose-arabic h2 {
   font-size: 1.5rem;
   font-weight: 700;
