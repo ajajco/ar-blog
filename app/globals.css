@@ -2,23 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-/* الخط العربي */
+/* خط عربي احترافي */
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700;800;900&display=swap");
 
-/* Reset بسيط */
+/* Reset */
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 
-/* خلي Tailwind يتحكم بالألوان */
-html {
-  direction: rtl;
-}
-
+/* إعدادات عامة */
+html,
 body {
-  font-family: 'Noto Sans Arabic', sans-serif;
+  font-family: "Noto Sans Arabic", Arial, sans-serif;
+  direction: rtl;
+  text-align: right;
+  background-color: #f8fafc;
+  color: #1e293b;
+  scroll-behavior: smooth;
 }
 
 /* الروابط */
@@ -27,17 +29,92 @@ a {
   text-decoration: none;
 }
 
-/* تحسين النصوص داخل المقال */
-.prose-arabic h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #0d3b25;
-  margin-top: 2rem;
-  margin-bottom: 0.75rem;
+/* تحسين الصور */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
-.prose-arabic p {
+/* ========================= */
+/* ✨ تحسين المقالات (Prose) */
+/* ========================= */
+
+.prose-arabic {
+  direction: rtl;
+  text-align: right;
   line-height: 2;
-  color: #374151;
-  margin-bottom: 1.25rem;
+  font-size: 1.05rem;
+}
+
+/* العناوين */
+.prose-arabic h1,
+.prose-arabic h2,
+.prose-arabic h3 {
+  font-weight: 800;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #0f172a;
+}
+
+/* الفقرات */
+.prose-arabic p {
+  margin-bottom: 1.2rem;
+  color: #334155;
+}
+
+/* القوائم */
+.prose-arabic ul {
+  padding-right: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.prose-arabic li {
+  margin-bottom: 0.5rem;
+}
+
+/* اقتباس */
+.prose-arabic blockquote {
+  border-right: 4px solid #10b981;
+  padding: 0.5rem 1rem;
+  background: #ecfdf5;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+}
+
+/* كود */
+.prose-arabic code {
+  background: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+/* ========================= */
+/* 🎨 تحسينات UI عامة */
+/* ========================= */
+
+/* زر */
+button {
+  cursor: pointer;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #16a34a;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e5e7eb;
+}
+
+/* Selection */
+::selection {
+  background: #10b981;
+  color: white;
 }
