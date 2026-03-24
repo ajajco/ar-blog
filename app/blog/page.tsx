@@ -4,35 +4,14 @@ import { useState } from "react";
 import type { Metadata } from "next";
 import PostCard from "@/components/PostCard";
 import { posts, categories } from "@/data/posts";
-import { motion } from "framer-motion";
-
-export const metadata: Metadata = {
-  title: "جميع المقالات | مدونتي العربية",
-  description:
-    "تصفّح أفضل المقالات العربية في الأعمال، التقنية، التسويق الرقمي وريادة الأعمال.",
-  keywords: [
-    "مدونة عربية",
-    "التسويق الرقمي",
-    "ريادة الأعمال",
-    "تقنية",
-    "CRM",
-  ],
-};
 
 export default function BlogPage() {
   const [activeCategory, setActiveCategory] = useState("الكل");
-  const [search, setSearch] = useState("");
 
-  // فلترة حسب التصنيف
   const filteredPosts =
     activeCategory === "الكل"
       ? posts
       : posts.filter((post) => post.category === activeCategory);
-
-  // فلترة حسب البحث
-  const finalPosts = filteredPosts.filter((post) =>
-    post.title.toLowerCase().includes(search.toLowerCase())
-  );
 
   return (
     <>
@@ -49,29 +28,16 @@ export default function BlogPage() {
           </h1>
 
           <p className="text-emerald-200 text-base">
-            مقالات شاملة ومعمّقة تتناول أهم المواضيع في عالم الأعمال والتقنية الحديثة.
+            مقالات شاملة ومعمّقة في الأعمال والتقنية والتسويق.
           </p>
         </div>
       </section>
 
-      {/* Content */}
-      <section className="max-w-6xl mx-auto px-4 py-10">
-        
-        {/* 🔍 البحث */}
-        <div className="mb-6">
-          <input
-            type="text"
-            placeholder="ابحث عن مقال..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full md:w-96 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
-          />
-        </div>
-
-        {/* 🏷️ التصنيفات */}
+      {/* Categories */}
+      <section className="max-w-6xl mx-auto px-4 py-8">
         <div className="flex items-center gap-2 mb-8 flex-wrap">
           <span className="text-gray-500 text-sm ml-2">
-            تصفية حسب التصنيف:
+            تصفية حسب التصنيف
           </span>
 
           {categories.map((cat) => {
@@ -86,7 +52,7 @@ export default function BlogPage() {
                 onClick={() => setActiveCategory(cat)}
                 className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
                   activeCategory === cat
-                    ? "bg-[#0d3b25] text-white shadow"
+                    ? "bg-[#0d3b25] text-white"
                     : "bg-gray-100 text-gray-600 hover:bg-emerald-50 hover:text-emerald-800"
                 }`}
               >
@@ -96,29 +62,18 @@ export default function BlogPage() {
           })}
         </div>
 
-        {/* 📄 المقالات */}
-        {finalPosts.length === 0 ? (
-          <p className="text-center text-gray-500 mt-10">
-            لا توجد نتائج مطابقة 😅
-          </p>
-        ) : (
-          <motion.div
-            layout
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            {finalPosts.map((post) => (
-              <motion.div
-                key={post.slug}
-                layout
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <PostCard post={post} />
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
+        {/* Posts */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredPosts.length > 0 ? (
+            filteredPosts.map((post) => (
+              <PostCard key={post.slug} post={post} />
+            ))
+          ) : (
+            <p className="text-gray-500 text-center col-span-full">
+              لا توجد مقالات في هذا التصنيف حالياً
+            </p>
+          )}
+        </div>
       </section>
     </>
   );
