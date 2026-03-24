@@ -2,119 +2,202 @@
 @tailwind components;
 @tailwind utilities;
 
-/* خط عربي احترافي */
+/* ===============================
+   🌐 Google Font (Arabic Pro)
+================================ */
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700;800;900&display=swap");
 
-/* Reset */
+/* ===============================
+   🎯 Base Reset
+================================ */
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 
-/* إعدادات عامة */
+/* ===============================
+   🌙 Root Variables
+================================ */
+:root {
+  --primary: #0d3b25;
+  --primary-light: #1a5c3a;
+  --accent: #f5c842;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --bg-main: #f8fafc;
+  --border: #e2e8f0;
+}
+
+/* ===============================
+   🧠 Body Styling
+================================ */
 html,
 body {
-  font-family: "Noto Sans Arabic", Arial, sans-serif;
+  font-family: "Noto Sans Arabic", system-ui, sans-serif;
   direction: rtl;
-  text-align: right;
-  background-color: #f8fafc;
-  color: #1e293b;
+  background-color: var(--bg-main);
+  color: var(--text-main);
   scroll-behavior: smooth;
 }
 
-/* الروابط */
+/* ===============================
+   🔗 Links
+================================ */
 a {
   color: inherit;
   text-decoration: none;
+  transition: all 0.2s ease;
 }
 
-/* تحسين الصور */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+/* ===============================
+   ✨ Headings
+================================ */
+h1, h2, h3, h4 {
+  font-weight: 800;
+  line-height: 1.4;
+  letter-spacing: -0.3px;
 }
 
-/* ========================= */
-/* ✨ تحسين المقالات (Prose) */
-/* ========================= */
-
+/* ===============================
+   📝 Arabic Typography (Prose)
+================================ */
 .prose-arabic {
-  direction: rtl;
-  text-align: right;
   line-height: 2;
   font-size: 1.05rem;
 }
 
-/* العناوين */
-.prose-arabic h1,
-.prose-arabic h2,
-.prose-arabic h3 {
-  font-weight: 800;
+.prose-arabic h2 {
+  font-size: 1.6rem;
   margin-top: 2rem;
-  margin-bottom: 1rem;
-  color: #0f172a;
+  margin-bottom: 0.7rem;
+  color: var(--primary);
 }
 
-/* الفقرات */
 .prose-arabic p {
   margin-bottom: 1.2rem;
   color: #334155;
 }
 
-/* القوائم */
-.prose-arabic ul {
-  padding-right: 1.5rem;
-  margin-bottom: 1.5rem;
+/* ===============================
+   🧊 Cards (Global Style)
+================================ */
+.card {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  transition: all 0.25s ease;
 }
 
-.prose-arabic li {
-  margin-bottom: 0.5rem;
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
 }
 
-/* اقتباس */
-.prose-arabic blockquote {
-  border-right: 4px solid #10b981;
-  padding: 0.5rem 1rem;
+/* ===============================
+   🏷️ Category Badge
+================================ */
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  border-radius: 999px;
   background: #ecfdf5;
-  margin: 1.5rem 0;
-  border-radius: 8px;
+  color: #065f46;
+  font-weight: 600;
 }
 
-/* كود */
-.prose-arabic code {
+/* ===============================
+   🔘 Buttons (Pro Style)
+================================ */
+.btn-primary {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-weight: bold;
+  transition: 0.25s;
+}
+
+.btn-primary:hover {
+  transform: scale(1.03);
+  background: linear-gradient(135deg, #34d399, #10b981);
+}
+
+.btn-outline {
+  border: 1px solid var(--border);
+  padding: 10px 18px;
+  border-radius: 12px;
+  transition: 0.25s;
+}
+
+.btn-outline:hover {
   background: #f1f5f9;
-  padding: 2px 6px;
-  border-radius: 6px;
-  font-size: 0.9rem;
 }
 
-/* ========================= */
-/* 🎨 تحسينات UI عامة */
-/* ========================= */
-
-/* زر */
-button {
-  cursor: pointer;
+/* ===============================
+   🔥 Hero Section Glow
+================================ */
+.hero-glow {
+  background: radial-gradient(circle at center, rgba(255,255,255,0.08), transparent 70%);
 }
 
-/* Scrollbar */
+/* ===============================
+   🧠 Input / Forms
+================================ */
+input, textarea {
+  border: 1px solid var(--border);
+  padding: 10px 12px;
+  border-radius: 10px;
+  width: 100%;
+  outline: none;
+  transition: 0.2s;
+}
+
+input:focus, textarea:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16,185,129,0.15);
+}
+
+/* ===============================
+   📦 Container Helper
+================================ */
+.container-custom {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 16px;
+}
+
+/* ===============================
+   🎬 Animations
+================================ */
+.fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===============================
+   🌙 Scrollbar (Modern)
+================================ */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #16a34a;
+  background: #cbd5f5;
   border-radius: 10px;
 }
 
-::-webkit-scrollbar-track {
-  background: #e5e7eb;
-}
-
-/* Selection */
-::selection {
-  background: #10b981;
-  color: white;
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
