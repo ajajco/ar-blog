@@ -17,7 +17,7 @@ export default async function PostPage({
       <h1 className="text-3xl font-black mb-4">{post.title}</h1>
 
       <div className="text-gray-500 text-sm mb-6">
-        {post.date} • {post.readTime}
+        {post.date} • {post.readingTime} دقائق
       </div>
 
       <div className="prose-arabic">
